@@ -22,7 +22,7 @@
 - Get Urls list 
 ```
     Type: Get
-    localhost:3000/"
+    localhost:3000/
 ```
 
 - Get Url not compressed 
