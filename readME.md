@@ -9,8 +9,34 @@
 ```
     npm run dev
 ``` 
-- Short you url
+
+## Requests
+
+- Short Url
 ```
-    localhost:3000/short/"Url"
-``` 
+    Type: Post
+    localhost:3000/short
+    body: { "url": "example.com" }
+```
+
+- Get Urls list 
+```
+    Type: Get
+    localhost:3000/"
+```
+
+- Get Url not compressed 
+```
+    Type: Get
+    localhost:3000/"short"
+```
+
+- Delet Url 
+```
+    Type: Get
+    localhost:3000/"_id"
+```
+
+
+
 [MIT](/LICENSE) &copy; Roberto Guerra
