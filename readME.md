@@ -4,7 +4,7 @@
 
 # how to use
 
-- Set string connetion with data base in file ./config/config.js
+- Set string connection with data base in file ./config/config.js
 - Run server
 ```
     npm run dev
