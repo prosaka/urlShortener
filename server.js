@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const indexRoute = require('./Routes/index');
 const indexShort = require('./Routes/short');
+const indexUnshort= require('./Routes/unshort')
 const { connect_db, db_opt }  = require('./config/config');
 const app = express();
 
-mongoose.connect( connect_db, db_opt);
+mongoose.connect(connect_db, db_opt);
 mongoose.set( 'useCreateIndex', true );
 
 mongoose.connection.on('error', (err) => {
@@ -19,6 +21,10 @@ mongoose.connection.on('disconnecte', () => {
 mongoose.connection.on('connected', () => {
     console.log('Connected with data base!');
 });
+
+
+app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.json());
 
 app.use('/', indexRoute);
 app.use('/short', indexShort);

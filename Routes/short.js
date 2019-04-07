@@ -1,11 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const hash_url = require('../src/controller/shortController');
-const shortid = require('shortid');
+const Urls = require('../src/model/url');
 
-router.get('/:id', (req, res) => {
-    const url_hash = shortid.generate();
-    return res.send({ message:`GET in short is ok! ${url_hash}` });
+router.post('/', async (req, res) => {
+    const { url }  = req.body
+
+    if(!url) return res.send({ error: 'url inválida' })
+
+    try {
+        if( await Urls.findOne({ url })) return res.send({ error: 'Url já registrada !'});
+
+        const newUrl = await Urls.create(req.body)
+        
+        return res.send({ newUrl })
+    }
+    catch ( err ) {
+        return res.send({ error: 'Erro ao criar um novo usúario!' + err})
+    }
 })
 
 module.exports = router
