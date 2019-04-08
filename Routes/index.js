@@ -9,14 +9,16 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:short', async (req, res) => {
-    const short = req.params.short
+    let short = req.params.short
 
     if (!short) return res.send({ error: 'Id inválido!'})
+    
 
     try {
         const url = await Urls.find({ short }, 'url')
-        
-        return res.json(url)
+    
+        return res.redirect( url[0].url )
+         
     }
     catch (err) {
         return res.send({ error: 'Erro ao buscar o Id'})

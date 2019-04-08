@@ -6,6 +6,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.22",
+    "mongoose-type-url": "^1.0.5",
     "shortid": "^2.2.14"
   },
   "devDependencies": {

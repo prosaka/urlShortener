@@ -4,12 +4,16 @@ const Urls = require('../src/model/url');
 
 router.post('/', async (req, res) => {
     const { url }  = req.body
-
+    
     if(!url) return res.send({ error: 'url inválida' })
+    
+    if( await Urls.findOne({ url })) {
+        let urlCreated = await Urls.find({ url }, 'shortUrl')
 
+        return res.json(urlCreated)
+    }
     try {
-        if( await Urls.findOne({ url })) return res.send({ error: 'Url já registrada !'});
-
+    
         const newUrl = await Urls.create(req.body)
         
         return res.send({ newUrl })
