@@ -21,13 +21,13 @@ mongoose.connection.on('connected', () => {
     console.log('Connected with data base!');
 });
 
-
+app.use('/public', express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
 
 app.use('/', indexRoute);
 app.use('/short', indexShort);
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 module.exports = app

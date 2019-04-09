@@ -1,11 +1,16 @@
 const express = require('express')
 const Urls = require('../src/model/url')
 const router = express.Router();
+const path = require('path')
 
 
 router.get('/', async (req, res) => {
-    const urls = await Urls.find({});
-    return res.json(urls)
+    res.sendFile('index.html', { root: path.join(__dirname, '../public')})
+})
+
+router.get('/list', async (req, res) => {
+    const list = await Urls.find({})
+    return res.json(list)
 })
 
 router.get('/:short', async (req, res) => {
