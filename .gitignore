@@ -61,6 +61,6 @@ typings/
 .next
 
 # config files
-config/config.js
+# config/config.js
 
 .vscode
