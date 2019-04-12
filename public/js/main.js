@@ -10,7 +10,10 @@ document.getElementById('send').addEventListener('click', function () {
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.onload = function () {
         var url = JSON.parse(xhr.responseText);
+        
         if (xhr.readyState == 4 && xhr.status == "200") {
+
+            console.log(url)
             input.value = ''
             input.value = url.newUrl.shortUrl
         } else {

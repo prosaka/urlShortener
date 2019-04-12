@@ -10,10 +10,12 @@ const urlSchema = new Schema({
     created: { type: Date, default: Date.now, }
 })
 
+
+
 urlSchema.pre('save', async function(next) {
     let url = this;
     url.short = await url.short.replace(/([^A-Za-z0-9])/, '').slice(1,6);
-    url.shortUrl = await `${process.env.URL}/${url.short}`  
+    url.shortUrl = await `http://localhost:3000/${url.short}`  
     return next()
 })
 
