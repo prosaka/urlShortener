@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const indexRoute = require('./Routes/index');
 const indexShort = require('./Routes/short');
 const { connect_db, db_opt }  = require('./config/config');
+const cors = require('cors');
 const app = express();
+
 
 mongoose.connect(connect_db, db_opt);
 mongoose.set( 'useCreateIndex', true );
@@ -20,7 +22,7 @@ mongoose.connection.on('disconnecte', () => {
 mongoose.connection.on('connected', () => {
     console.log('Connected with data base!');
 });
-
+app.use(cors());
 app.use('/public', express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(bodyParser.json());
