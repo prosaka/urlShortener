@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     if( await Urls.findOne({ url })) {
         let urlCreated = await Urls.find({ url }, 'shortUrl')
 
-        return res.status(302).json(urlCreated)
+        return res.status(200).json(urlCreated)
     }
     try {
     
