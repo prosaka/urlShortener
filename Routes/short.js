@@ -10,16 +10,16 @@ router.post('/', async (req, res) => {
     if( await Urls.findOne({ url })) {
         let urlCreated = await Urls.find({ url }, 'shortUrl')
 
-        return res.json(urlCreated)
+        return res.status(302).json(urlCreated)
     }
     try {
     
         const newUrl = await Urls.create(req.body)
         
-        return res.send({ newUrl })
+        return res.status(201).json( newUrl )
     }
     catch ( err ) {
-        return res.send({ error: 'Erro ao criar um novo usúario!' + err})
+        return res.status(500).send({ error: 'Erro ao criar um novo usúario!' + err})
     }
 })
 

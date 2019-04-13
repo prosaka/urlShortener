@@ -4,11 +4,8 @@ const router = express.Router();
 const path = require('path')
 
 
-router.get('/', async (req, res) => {
-    res.sendFile('index.html', { root: path.join(__dirname, '../public')})
-})
 
-router.get('/list', async (req, res) => {
+router.get('/', async (req, res) => {
     const list = await Urls.find({})
     return res.json(list)
 })
@@ -16,17 +13,17 @@ router.get('/list', async (req, res) => {
 router.get('/:short', async (req, res) => {
     let short = req.params.short
 
-    if (!short) return res.send({ error: 'Id inválido!'})
+    if (!short) return res.status(403).end({ error: 'Id inválido!'})
     
 
     try {
         const url = await Urls.find({ short }, 'url')
     
-        return res.redirect( url[0].url )
+        return res.status(301).redirect( url[0].url )
          
     }
     catch (err) {
-        return res.send({ error: 'Erro ao buscar o Id'})
+        return res.status(500).send({ error: 'Erro ao buscar o Id'})
     }
 })
 
